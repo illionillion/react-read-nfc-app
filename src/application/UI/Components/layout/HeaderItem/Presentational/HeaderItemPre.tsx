@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { headerIconText, headerStyle } from "./HeaderItemPre.css";
-import { Box, Heading, } from "@chakra-ui/react";
+import type { FC } from 'react';
+import { headerIconText, headerStyle } from './HeaderItemPre.css';
+import { Box, Heading, } from '@chakra-ui/react';
 
 export const HeaderItemPre:FC = () => {
-    return (
-        <Box as="header" css={headerStyle}>
-            <Heading css={headerIconText}>NFC読み取りWebアプリ</Heading>
-        </Box>
-    )
-}
+  return (
+    <Box as="header" css={headerStyle}>
+      <Heading css={headerIconText}>NFC読み取りWebアプリ</Heading>
+    </Box>
+  );
+};

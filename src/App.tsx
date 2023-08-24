@@ -1,5 +1,5 @@
-import type { FC } from "react"
-import { HomeCon } from "./features/home/UI/Container/HomeCon"
+import type { FC } from 'react';
+import { HomeCon } from './features/home/UI/Container/HomeCon';
 
 const App: FC = () => {
 
@@ -7,7 +7,7 @@ const App: FC = () => {
     <>
       <HomeCon />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
