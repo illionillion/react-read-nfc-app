@@ -5,7 +5,7 @@ import { Box, Heading, } from "@chakra-ui/react";
 export const HeaderItemPre:FC = () => {
     return (
         <Box as="header" css={headerStyle}>
-            <Heading css={headerIconText}>NFC読み取り</Heading>
+            <Heading css={headerIconText}>NFC読み取りWebアプリ</Heading>
         </Box>
     )
 }
