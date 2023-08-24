@@ -28,7 +28,7 @@ jobs:
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
         run: |
-          git config user.name="${GIT_USER_NAME}" -c user.email="${GIT_USER_EMAIL}"
+          git config user.name "${GIT_USER_NAME}" -c user.email "${GIT_USER_EMAIL}"
           git add .
           git commit -m "Update GitHub Pages"
           git push
