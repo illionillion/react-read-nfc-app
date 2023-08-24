@@ -4,6 +4,7 @@ import { HomePre } from "../Presentational/HomePre";
 export const HomeCon: FC = () => {
 
     const [isSupported, setIsSupported] = useState<boolean>(false)
+    const [isRead, setIsRead] = useState<boolean>(false)
 
     // 対応しているかの確認
     const isNFCSupported = () => {
@@ -35,5 +36,5 @@ export const HomeCon: FC = () => {
     }, [])
 
 
-    return <HomePre {...{ isSupported }} />
+    return <HomePre {...{ isSupported, isRead }} />
 }
