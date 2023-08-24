@@ -4,7 +4,11 @@ import { HomePre } from "../Presentational/HomePre";
 export const HomeCon: FC = () => {
 
     const [isSupported, setIsSupported] = useState<boolean>(false)
+    const [isReadStarted, setIsReadStarted] = useState<boolean>(false)
     const [isRead, setIsRead] = useState<boolean>(false)
+    const [isReadFailed, setIsReadFailed] = useState<boolean>(false)
+    const [errorMessage, setErrorMessage] = useState<string>("")
+    const [NFCserialNumber, setNFCserialNumber] = useState<string>("")
 
     // 対応しているかの確認
     const isNFCSupported = () => {
@@ -17,16 +21,39 @@ export const HomeCon: FC = () => {
         }
     }
 
+    const ReadNFC = async () => {
+        try {
+            setIsReadStarted(true)
+            const reader = new NDEFReader();
+            await reader.scan();
+
+            reader.addEventListener("readingerror", () => {
+                setErrorMessage("読み込みに失敗しました。もう一度読み取ってください。")
+                setIsReadFailed(true)
+                setIsRead(true)
+            });
+
+            reader.addEventListener("reading", (event) => {
+                setIsReadFailed(false)
+                setIsRead(true)
+                const { message, serialNumber } = event as NDEFReadingEvent
+                setNFCserialNumber(serialNumber)
+                message.records
+            });
+        } catch (error) {
+            setErrorMessage("読み込みに失敗しました。エラー：" + error)
+            setIsReadFailed(true)
+            setIsRead(true)
+        }
+
+    }
+
     let ignore = false
     useEffect(() => {
 
         if (!ignore) {
             if (isNFCSupported()) {
-                // alert("このブラウザはNFC読み取り機能をサポートしています。");
-                const reader = new NDEFReader();
                 setIsSupported(true)
-            } else {
-                // alert("このブラウザはNFC読み取り機能をサポートしていません。");
             }
         }
 
@@ -36,5 +63,5 @@ export const HomeCon: FC = () => {
     }, [])
 
 
-    return <HomePre {...{ isSupported, isRead }} />
+    return <HomePre {...{ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, handleReadStart: ReadNFC, NFCserialNumber }} />
 }

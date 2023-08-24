@@ -6,13 +6,18 @@ import { FcNfcSign } from "react-icons/fc";
 
 interface NFCReaderViewProps {
     isRead: boolean
+    isReadFailed: boolean
+    errorMessage: string
+    NFCserialNumber: string
 }
 
-export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead }) => {
+export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, errorMessage, NFCserialNumber }) => {
     return <>
         {
             isRead ?
-            <></> :
+            <>
+                {isReadFailed ? errorMessage : <Text>シリアルナンバー：{NFCserialNumber}</Text>}
+            </> :
             <Box css={IsSupportedMessageStyle}>
                 <IconContext.Provider value={{ size: '3rem' }}>
                     <FcNfcSign />

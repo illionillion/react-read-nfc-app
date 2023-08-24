@@ -1,23 +1,28 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import { Layout } from "../../../../application/UI/Components/layout";
 import { NotSupportedMessage } from "../Components/NotSupportedMessage";
-import { Container } from "@chakra-ui/react";
+import { Button, Container } from "@chakra-ui/react";
 import { ContainerStyle } from "./HomePre.css";
 import { NFCReaderView } from "../Components/NFCReaderVIew";
 
 interface HomePreProps {
     isSupported: boolean
+    isReadStarted: boolean
     isRead: boolean
+    isReadFailed: boolean
+    errorMessage: string
+    NFCserialNumber: string
+    handleReadStart: MouseEventHandler<HTMLButtonElement>
 }
 
-export const HomePre: FC<HomePreProps> = ({ isSupported, isRead }) => {
+export const HomePre: FC<HomePreProps> = ({ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, NFCserialNumber, handleReadStart}) => {
     return (
         <>
             <Layout>
                 <Container css={ContainerStyle}>
                     {
                         isSupported ?
-                            <NFCReaderView {...{ isRead }} />
+                            !isReadStarted ? <><Button onClick={handleReadStart}>読み取り開始</Button></> : <NFCReaderView {...{ isRead, isReadFailed, errorMessage, NFCserialNumber }} />
                             :
                             <NotSupportedMessage />
                     }
