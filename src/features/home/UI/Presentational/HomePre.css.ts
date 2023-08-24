@@ -7,7 +7,7 @@ export const ContainerStyle = css`
   align-items: center;
 `;
 
-export const NotSupportedMessage = css`
+export const NotSupportedMessageStyle = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
