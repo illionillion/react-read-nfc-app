@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  # Use the desired Node.js version
+
+      - name: Install dependencies and build
+        run: |
+          npm install --legacy-peer-deps
+          npm run rebuild  # Replace with your build command
+
+      - name: Deploy to GitHub Pages
+        run: |
+          # Assuming your built files are in the 'build' directory
+          # git checkout gh-pages  # Change to the branch used for GitHub Pages
+          # mv build/* .  # Move the built files to the root
+          git add .
+          git commit -m "Update GitHub Pages"
+          git push
