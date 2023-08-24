@@ -16,18 +16,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Use the desired Node.js version
+          node-version: '18'
 
       - name: Install dependencies and build
         run: |
           npm install --legacy-peer-deps
-          npm run rebuild  # Replace with your build command
+          npm run rebuild
 
       - name: Deploy to GitHub Pages
+        env:
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+          GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
         run: |
-          # Assuming your built files are in the 'build' directory
-          # git checkout gh-pages  # Change to the branch used for GitHub Pages
-          # mv build/* .  # Move the built files to the root
+          git -c user.name="${GIT_USER_NAME}" -c user.email="${GIT_USER_EMAIL}"
           git add .
           git commit -m "Update GitHub Pages"
           git push
