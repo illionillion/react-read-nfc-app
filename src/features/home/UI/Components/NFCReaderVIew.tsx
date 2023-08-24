@@ -9,14 +9,28 @@ interface NFCReaderViewProps {
     isReadFailed: boolean
     errorMessage: string
     NFCserialNumber: string
+    records: readonly NDEFRecord[]
 }
 
-export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, errorMessage, NFCserialNumber }) => {
+export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, errorMessage, NFCserialNumber, records }) => {
   return <>
     {
       isRead ?
         <>
-          {isReadFailed ? errorMessage : <Text>シリアルナンバー：{NFCserialNumber}</Text>}
+          {isReadFailed ? errorMessage : 
+            <Box>
+              <Text>シリアルナンバー：{NFCserialNumber}</Text>
+              {records.map(item => {
+                if (item.recordType === 'text') {
+                  const textDecoder = new TextDecoder(item.encoding);
+                  const text = textDecoder.decode(item.data);
+                  return <Text>{`Text: ${text}`}</Text>;
+                } else {
+                  return <Text>変換不可</Text>;
+                }
+              })}
+            </Box>
+          }
         </> :
         <Box css={IsSupportedMessageStyle}>
           <IconContext.Provider value={{ size: '3rem' }}>

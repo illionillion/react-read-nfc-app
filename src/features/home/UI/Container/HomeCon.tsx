@@ -10,7 +10,7 @@ export const HomeCon: FC = () => {
   const [isReadFailed, setIsReadFailed] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [NFCserialNumber, setNFCserialNumber] = useState<string>('');
-
+  const [records, setRecords] = useState<readonly NDEFRecord[]>([]);
   // 対応しているかの確認
   const isNFCSupported = () => {
     if ('NDEFReader' in window) {
@@ -39,7 +39,7 @@ export const HomeCon: FC = () => {
         setIsRead(true);
         const { message, serialNumber } = event as NDEFReadingEvent;
         setNFCserialNumber(serialNumber);
-        message.records;
+        setRecords(message.records);
       });
     } catch (error) {
       setErrorMessage('読み込みに失敗しました。エラー：' + error);
@@ -64,5 +64,5 @@ export const HomeCon: FC = () => {
   }, []);
 
 
-  return <HomePre {...{ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, handleReadStart: ReadNFC, NFCserialNumber }} />;
+  return <HomePre {...{ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, handleReadStart: ReadNFC, NFCserialNumber, records }} />;
 };
