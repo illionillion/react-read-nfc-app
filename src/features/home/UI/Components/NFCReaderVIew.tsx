@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Link, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { IsSupportedMessageStyle } from '../Presentational/HomePre.css';
 import { IconContext } from 'react-icons';
@@ -25,6 +25,10 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                   const textDecoder = new TextDecoder(item.encoding);
                   const text = textDecoder.decode(item.data);
                   return <Text>{`Text: ${text}`}</Text>;
+                } else if(item.recordType === 'url') {
+                  const textDecoder = new TextDecoder();
+                  const text = textDecoder.decode(item.data);
+                  return <Text>URL:<Link href={text}>{text}</Link></Text>;
                 } else {
                   return <Text>変換不可</Text>;
                 }
