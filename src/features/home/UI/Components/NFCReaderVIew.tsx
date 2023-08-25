@@ -28,7 +28,7 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                 } else if(item.recordType === 'url') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
-                  return <Text>URL: <Link href={text} color='teal.500' isExternal>{text}</Link></Text>;
+                  return <Text>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
                 } else {
                   return <Text>変換不可</Text>;
                 }
