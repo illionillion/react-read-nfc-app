@@ -1,4 +1,4 @@
-import type { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { Layout } from '../../../../application/UI/Components/layout';
 import { NotSupportedMessage } from '../Components/NotSupportedMessage';
 import { Button, Container } from '@chakra-ui/react';
