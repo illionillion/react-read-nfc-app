@@ -2,7 +2,7 @@ import { Box, Link, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { IsSupportedMessageStyle } from '../Presentational/HomePre.css';
 import { IconContext } from 'react-icons';
-import { FcNfcSign } from 'react-icons/fc';
+import { LuSmartphoneNfc } from 'react-icons/lu';
 
 interface NFCReaderViewProps {
     isRead: boolean
@@ -38,7 +38,7 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
         </> :
         <Box css={IsSupportedMessageStyle}>
           <IconContext.Provider value={{ size: '3rem' }}>
-            <FcNfcSign />
+            <LuSmartphoneNfc />
           </IconContext.Provider>
           <Text>NFCを近づけてください。</Text>
         </Box>
