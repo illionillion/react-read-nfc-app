@@ -11,7 +11,8 @@ const App: FC = () => {
 
   return (
     <>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      {/* <BrowserRouter basename={import.meta.env.BASE_URL}> */}
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomeCon />} />
           <Route path="read" element={<HomeCon />} />
