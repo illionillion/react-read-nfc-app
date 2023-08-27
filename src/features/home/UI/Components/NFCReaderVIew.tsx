@@ -1,8 +1,8 @@
 import { Box, Link, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
-import { IsSupportedMessageStyle } from '../Presentational/HomePre.css';
 import { IconContext } from 'react-icons';
 import { LuSmartphoneNfc } from 'react-icons/lu';
+import { IsSupportedMessageStyle } from '../../../../application/UI/Components/isSupported/NotSupportedMessage.css';
 
 interface NFCReaderViewProps {
     isRead: boolean
@@ -24,13 +24,13 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                 if (item.recordType === 'text') {
                   const textDecoder = new TextDecoder(item.encoding);
                   const text = textDecoder.decode(item.data);
-                  return <Text>{`Text: ${text}`}</Text>;
+                  return <Text key={item.id}>{`Text: ${text}`}</Text>;
                 } else if(item.recordType === 'url') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
-                  return <Text>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
+                  return <Text key={item.id}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
                 } else {
-                  return <Text>変換不可</Text>;
+                  return <Text key={item.id}>変換不可</Text>;
                 }
               })}
             </Box>
