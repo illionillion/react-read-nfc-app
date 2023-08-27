@@ -8,8 +8,6 @@ import {
 import { WriteCon } from './features/write/UI/Container/WriteCon';
 
 const App: FC = () => {
-  console.log('route',import.meta.env.BASE_URL);
-  
   return (
     <>
       <BrowserRouter basename={import.meta.env.BASE_URL}>

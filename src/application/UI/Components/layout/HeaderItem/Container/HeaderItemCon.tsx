@@ -6,8 +6,6 @@ export const HeaderItemCon: FC = () => {
   const pathname = useLocation().pathname;
 
   const checkHref = (href:string) => {
-    console.log(import.meta.env.BASE_URL);
-    
     if (import.meta.env.BASE_URL === '/react-read-nfc-app/') {
       return `/react-read-nfc-app/${href}`;
     } else {
