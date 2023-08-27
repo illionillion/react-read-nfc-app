@@ -1,8 +1,8 @@
 import { Box, Link, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
-import { IsSupportedMessageStyle } from '../Presentational/HomePre.css';
 import { IconContext } from 'react-icons';
 import { LuSmartphoneNfc } from 'react-icons/lu';
+import { IsSupportedMessageStyle } from '../../../../application/UI/Components/isSupported/NotSupportedMessage.css';
 
 interface NFCReaderViewProps {
     isRead: boolean

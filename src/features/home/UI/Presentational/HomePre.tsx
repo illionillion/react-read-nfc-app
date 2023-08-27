@@ -1,10 +1,10 @@
 import type { FC, MouseEventHandler } from 'react';
 import { Layout } from '../../../../application/UI/Components/layout';
-import { NotSupportedMessage } from '../Components/NotSupportedMessage';
 import { Button, Container } from '@chakra-ui/react';
 import { ContainerStyle } from './HomePre.css';
 import { NFCReaderView } from '../Components/NFCReaderVIew';
 import { MdNfc } from 'react-icons/md';
+import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
 
 interface HomePreProps {
   isSupported: boolean
@@ -24,7 +24,10 @@ export const HomePre: FC<HomePreProps> = ({ isSupported, isRead, isReadStarted, 
         <Container css={ContainerStyle}>
           {
             isSupported ?
-              !isReadStarted ? <><Button colorScheme='teal' rightIcon={<MdNfc />} onClick={handleReadStart}>読み取り開始</Button></> : <NFCReaderView {...{ isRead, isReadFailed, errorMessage, NFCserialNumber, records }} />
+              !isReadStarted ? <>
+                <Button colorScheme='teal' rightIcon={<MdNfc />} onClick={handleReadStart}>読み取り開始</Button>
+              </> :
+                <NFCReaderView {...{ isRead, isReadFailed, errorMessage, NFCserialNumber, records }} />
               :
               <NotSupportedMessage />
           }

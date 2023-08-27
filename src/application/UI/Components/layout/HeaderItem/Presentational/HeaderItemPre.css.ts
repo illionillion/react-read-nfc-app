@@ -2,14 +2,15 @@ import { css } from '@emotion/react';
 
 export const headerStyle = css`
   width: 100vw;
-  height: 10vh;
-  min-height: 55px;
+  // height: 10vh;
+  // min-height: 55px;
   background-color: #16630e;
-  padding-inline: 10px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: sticky;
+  // position: sticky;
+  position: absolute;
   top: 0px;
 `;
 
