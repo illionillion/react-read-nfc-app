@@ -4,7 +4,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { WriteCon } from './features/write/UI/Container/WriteCon';
 
 const App: FC = () => {
@@ -20,7 +20,7 @@ const App: FC = () => {
           <Route
             path="*"
             element={
-              <main style={{ padding: "1rem" }}>
+              <main style={{ padding: '1rem' }}>
                 <p>Not Found!</p>
               </main>
             }
