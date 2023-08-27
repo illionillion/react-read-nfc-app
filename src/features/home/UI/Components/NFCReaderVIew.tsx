@@ -24,13 +24,13 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                 if (item.recordType === 'text') {
                   const textDecoder = new TextDecoder(item.encoding);
                   const text = textDecoder.decode(item.data);
-                  return <Text>{`Text: ${text}`}</Text>;
+                  return <Text key={item.id}>{`Text: ${text}`}</Text>;
                 } else if(item.recordType === 'url') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
-                  return <Text>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
+                  return <Text key={item.id}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
                 } else {
-                  return <Text>変換不可</Text>;
+                  return <Text key={item.id}>変換不可</Text>;
                 }
               })}
             </Box>
