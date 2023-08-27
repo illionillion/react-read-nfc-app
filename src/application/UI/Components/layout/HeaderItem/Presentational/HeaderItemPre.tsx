@@ -4,8 +4,9 @@ import { Button, Flex, Heading, } from '@chakra-ui/react';
 
 interface HeaderItemPreProps {
     pathname: string
+    checkHref: (href: string) => string
 }
-export const HeaderItemPre: FC<HeaderItemPreProps> = ({pathname}) => {
+export const HeaderItemPre: FC<HeaderItemPreProps> = ({pathname, checkHref}) => {
   return (
     <Flex direction='column' as='header' css={headerStyle}>
       <Heading css={headerIconText}>NFC読み取りWebアプリ</Heading>
