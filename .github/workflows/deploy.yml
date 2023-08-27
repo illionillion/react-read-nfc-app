@@ -26,6 +26,8 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           npm run rebuild
+        env:
+          GITHUB_PAGES: true
 
       - name: Deploy to GitHub Pages
         run: |
