@@ -13,11 +13,11 @@ interface HomePreProps {
   isReadFailed: boolean
   errorMessage: string
   NFCserialNumber: string
-  handleReadStart: MouseEventHandler<HTMLButtonElement>
   records: readonly NDEFRecord[]
+  handleReadStart: MouseEventHandler<HTMLButtonElement>
 }
 
-export const HomePre: FC<HomePreProps> = ({ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, NFCserialNumber, handleReadStart, records }) => {
+export const HomePre: FC<HomePreProps> = ({ isSupported, isRead, isReadStarted, isReadFailed, errorMessage, NFCserialNumber, records, handleReadStart }) => {
   return (
     <>
       <Layout>
