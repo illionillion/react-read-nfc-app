@@ -20,17 +20,17 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
           {isReadFailed ? errorMessage : 
             <Box>
               <Text>シリアルナンバー：{NFCserialNumber}</Text>
-              {records.map(item => {
+              {records.map((item, index) => {
                 if (item.recordType === 'text') {
                   const textDecoder = new TextDecoder(item.encoding);
                   const text = textDecoder.decode(item.data);
-                  return <Text key={item.id}>{`Text: ${text}`}</Text>;
+                  return <Text key={index}>{`Text: ${text}`}</Text>;
                 } else if(item.recordType === 'url') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
-                  return <Text key={item.id}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
+                  return <Text key={index}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
                 } else {
-                  return <Text key={item.id}>変換不可</Text>;
+                  return <Text key={index}>変換不可</Text>;
                 }
               })}
             </Box>
