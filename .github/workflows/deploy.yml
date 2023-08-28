@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install --legacy-peer-deps
+          npm install
           npm run rebuild
         env:
           GITHUB_PAGES: true
