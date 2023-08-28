@@ -1,8 +1,9 @@
 import type { ChangeEvent, FC } from 'react';
 import { Layout } from '../../../../application/UI/Components/layout';
-import { Box, Button, Container, Heading, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Spinner, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, Container, Flex, Heading, List, ListItem, Text, Textarea } from '@chakra-ui/react';
 import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
 import { ContainerStyle } from './WritePre.css';
+import { WritingModal } from '../Components/WritingModal';
 
 interface WritePreProps {
   isSupported: boolean
@@ -10,11 +11,13 @@ interface WritePreProps {
   isWriting: boolean
   isWritingModal: boolean
   isError: boolean
+  writeData: NDEFRecordInit[]
   handleToWrite: () => Promise<void>
   handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   WritingModalClose: () => void
+  handleAddRecord: () => void
 }
-export const WritePre: FC<WritePreProps> = ({ isSupported, data, isWriting, isWritingModal, isError, handleTextChange, handleToWrite, WritingModalClose }) => {
+export const WritePre: FC<WritePreProps> = ({writeData, isSupported, data, isWriting, isWritingModal, isError, handleTextChange, handleToWrite, WritingModalClose, handleAddRecord }) => {
   return (
     <Layout>
       <Container css={ContainerStyle}>
@@ -23,26 +26,20 @@ export const WritePre: FC<WritePreProps> = ({ isSupported, data, isWriting, isWr
             <Box>
               <Heading>テキストを入力</Heading>
               <Textarea value={data} onChange={handleTextChange} />
-              <Button onClick={handleToWrite}>書き込む</Button>
-              <Modal isCentered size='2xl' closeOnOverlayClick={false} isOpen={isWritingModal} onClose={WritingModalClose}>
-                <ModalOverlay />
-                <ModalContent h='2xs'>
-                  <ModalBody h='full' display='flex' justifyContent='center' alignItems='center'>
-                    {isWriting ? <Box display='flex' flexDir='column' justifyContent='center' alignItems='center' gap={3}>
-                      <Text>書き込み中</Text>
-                      <Spinner size='lg' />
-                    </Box> : <Text>書き込み完了</Text>
-                    }
-                    {isError && <Text colorScheme='red'>書き込み失敗</Text>}
-                  </ModalBody>
-
-                  <ModalFooter>
-                    <Button colorScheme='blue' isDisabled={isWriting} onClick={WritingModalClose}>
-                      閉じる
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
+              <Flex>
+                <Button onClick={handleAddRecord}>レコード追加</Button>
+                <Button onClick={handleToWrite}>書き込む</Button>
+              </Flex>
+              <Text>レコード一覧</Text>
+              <List>
+                {writeData.map((item, index) => (
+                  <ListItem key={index}>
+                    <Text>{item.data as string}</Text>
+                  </ListItem>
+                ))}
+                {writeData.length === 0 && <ListItem>レコードなし</ListItem>}
+              </List>
+              <WritingModal isWriting={isWriting} isWritingModal={isWritingModal} isError={isError} WritingModalClose={WritingModalClose} />
             </Box>
             :
             <NotSupportedMessage />
