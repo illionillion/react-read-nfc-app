@@ -6,6 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 import { WriteCon } from './features/write/UI/Container/WriteCon';
+import { NotFoundCon } from './features/NotFound/UI/Container/NotFoundCon';
 
 const App: FC = () => {
   return (
@@ -18,11 +19,7 @@ const App: FC = () => {
 
           <Route
             path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>Not Found!</p>
-              </main>
-            }
+            element={<NotFoundCon />}
           />
         </Routes>
       </BrowserRouter>
