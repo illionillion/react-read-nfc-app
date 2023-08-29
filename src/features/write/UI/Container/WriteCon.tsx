@@ -11,6 +11,7 @@ export const WriteCon: FC = () => {
   const [isWriting, setIsWriting] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isWritingModal, { on: WritingModalOpen, off: WritingModalClose }] = useBoolean();
+  const [isAddModalOpen, { on: AddModalOnOpen, off: AddModalOnClose }] = useBoolean();
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setData(e.currentTarget.value);
   };
@@ -19,6 +20,7 @@ export const WriteCon: FC = () => {
     if (data === '') return;
     setWriteData(prev => [...prev, { recordType: 'text', data: data }]);
     setData('');
+    AddModalOnClose();
   };
 
   const handleToWrite = async () => {
@@ -37,5 +39,19 @@ export const WriteCon: FC = () => {
     }
   };
 
-  return <WritePre writeData={writeData} isError={isError} isSupported={isSupported} isWritingModal={isWritingModal} data={data} isWriting={isWriting} handleAddRecord={handleAddRecord} handleTextChange={handleTextChange} handleToWrite={handleToWrite} WritingModalClose={WritingModalClose} />;
+  return <WritePre
+    writeData={writeData}
+    isError={isError}
+    isSupported={isSupported}
+    isWritingModal={isWritingModal}
+    isAddModalOpen={isAddModalOpen}
+    data={data}
+    isWriting={isWriting}
+    handleAddRecord={handleAddRecord}
+    handleTextChange={handleTextChange}
+    handleToWrite={handleToWrite}
+    WritingModalClose={WritingModalClose}
+    AddModalOnOpen={AddModalOnOpen}
+    AddModalOnClose={AddModalOnClose}
+  />;
 };
