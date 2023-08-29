@@ -11,8 +11,8 @@ export const HeaderItemPre: FC<HeaderItemPreProps> = ({pathname, checkHref}) => 
     <Flex direction='column' as='header' css={headerStyle}>
       <Heading css={headerIconText} as={'a'} href={checkHref('/')}>NFC読み取りWebアプリ</Heading>
       <Flex w='full' justify='center' gap={1}>
-        <Button flex={1} as='a' href={checkHref('read')} colorScheme={pathname === '/' || pathname === '/read' ? 'teal' : undefined }>読み取りモード</Button>
-        <Button flex={1} as='a' href={checkHref('write')} colorScheme={pathname === '/write' ? 'teal' : undefined }>書き込みモード</Button>
+        <Button flex={1} as='a' href={checkHref('/read')} colorScheme={pathname === '/' || pathname === '/read' ? 'teal' : undefined }>読み取りモード</Button>
+        <Button flex={1} as='a' href={checkHref('/write')} colorScheme={pathname === '/write' ? 'teal' : undefined }>書き込みモード</Button>
       </Flex>
     </Flex>
   );

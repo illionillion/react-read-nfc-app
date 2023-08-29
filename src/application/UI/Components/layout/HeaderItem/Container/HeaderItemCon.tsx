@@ -7,7 +7,7 @@ export const HeaderItemCon: FC = () => {
 
   const checkHref = (href:string) => {
     if (import.meta.env.BASE_URL === '/react-read-nfc-app/') {
-      return `/react-read-nfc-app/${href}`;
+      return `/react-read-nfc-app${href}`;
     } else {
       return href;
     }

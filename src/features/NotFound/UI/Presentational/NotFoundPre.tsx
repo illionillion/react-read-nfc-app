@@ -8,7 +8,7 @@ export const NotFoundPre: FC = () => {
     <Layout>
       <Container display='flex' flexDir='column' alignItems='center' justifyContent='center' h='100svh'>
         <Text>ページが見つかりません。</Text>
-        <Link to='/'>トップへ戻る</Link>
+        <Link to='/' style={{color: 'skyblue', textDecoration: 'underline'}}>トップへ戻る</Link>
       </Container>
     </Layout>
   );
