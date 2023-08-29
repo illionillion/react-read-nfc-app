@@ -2,13 +2,13 @@ import { Box, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay,
 import type { FC } from 'react';
 
 interface WritingModalProps {
-    isWriting: boolean
-    isWritingModal: boolean
-    isError: boolean
-    WritingModalClose: () => void  
+  isWriting: boolean
+  isWritingModal: boolean
+  isError: boolean
+  WritingModalClose: () => void
 }
 
-export const WritingModal: FC<WritingModalProps> = ({isWriting, isWritingModal, isError, WritingModalClose}) => {
+export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal, isError, WritingModalClose }) => {
   return (
     <Modal isCentered size='2xl' closeOnOverlayClick={false} isOpen={isWritingModal} onClose={WritingModalClose}>
       <ModalOverlay />
@@ -24,7 +24,7 @@ export const WritingModal: FC<WritingModalProps> = ({isWriting, isWritingModal, 
 
         <ModalFooter>
           <Button colorScheme='blue' isDisabled={isWriting} onClick={WritingModalClose}>
-                        閉じる
+            閉じる
           </Button>
         </ModalFooter>
       </ModalContent>
