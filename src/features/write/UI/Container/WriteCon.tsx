@@ -13,7 +13,7 @@ export const WriteCon: FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [isWritingModal, { on: WritingModalOpen, off: WritingModalClose }] = useBoolean();
   const [isAddModalOpen, { on: AddModalOnOpen, off: AddModalOnClose }] = useBoolean();
-  const [recordType, setRecordType] = useState<string>('text')
+  const [recordType, setRecordType] = useState<string>('text');
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setData(e.currentTarget.value);
@@ -28,9 +28,9 @@ export const WriteCon: FC = () => {
     if (recordType === 'url' && url === '') return;
     setWriteData(prev => [...prev, (() => {
       if (recordType === 'text') {
-        return { recordType: 'text', data: data }
+        return { recordType: 'text', data: data };
       } else {
-        return { recordType: 'url', data:  url }
+        return { recordType: 'url', data:  url };
       }
     })()]);
     setData('');
@@ -54,8 +54,8 @@ export const WriteCon: FC = () => {
   };
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setRecordType(e.currentTarget.value)
-  }
+    setRecordType(e.currentTarget.value);
+  };
 
   return <WritePre
     writeData={writeData}
