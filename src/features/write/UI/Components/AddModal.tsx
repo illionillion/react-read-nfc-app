@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text, Textarea } from '@chakra-ui/react';
 import type { ChangeEvent, FC } from 'react';
 
 interface AddModalProps {
@@ -26,35 +26,37 @@ export const AddModal: FC<AddModalProps> = ({
 }) => <Modal isCentered size='3xl' closeOnOverlayClick={false} isOpen={isAddModalOpen} onClose={AddModalOnClose}>
   <ModalOverlay />
   <ModalContent h='md'>
-    <ModalBody h='full' display='flex' flexDir='column' justifyContent='center' alignItems='center'>
-      <Text>形式を選択</Text>
-      <Select value={recordType} onChange={handleSelectChange}>
-        <option value="text">テキスト</option>
-        <option value="url">URL</option>
-      </Select>
+    <ModalBody h='full' display='flex' gap={5} flexDir='column' justifyContent='center' alignItems='center'>
+      <Box w='full'>
+        <Text as='label' htmlFor='SelectType'>形式を選択</Text>
+        <Select id='SelectType' value={recordType} onChange={handleSelectChange}>
+          <option value="text">テキスト</option>
+          <option value="url">URL</option>
+        </Select>
+      </Box>
       {
         (() => {
           switch (recordType) {
             case 'text':
               return (
-                <>
+                <Box w='full'>
                   <Text as='label' htmlFor='InputText'>テキストを入力</Text>
                   <Textarea id='InputText' value={data} onChange={handleTextChange} />
-                </>
+                </Box>
               );
             case 'url':
               return (
-                <>
+                <Box w='full'>
                   <Text as='label' htmlFor='InputText'>リンクを入力</Text>
                   <Input id='InputText' value={url} type='url' onChange={handleUrlChange} />
-                </>
+                </Box>
               );
             default:
               return (
-                <>
+                <Box w='full'>
                   <Text as='label' htmlFor='InputText'>テキストを入力</Text>
                   <Textarea id='InputText' value={data} onChange={handleTextChange} />
-                </>
+                </Box>
               );
           }
         })()

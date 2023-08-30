@@ -34,6 +34,7 @@ export const WriteCon: FC = () => {
       }
     })()]);
     setData('');
+    setUrl('');
     AddModalOnClose();
   };
 
