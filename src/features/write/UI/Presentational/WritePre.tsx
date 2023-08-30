@@ -14,12 +14,16 @@ interface WritePreProps {
   isAddModalOpen: boolean
   isError: boolean
   writeData: NDEFRecordInit[]
+  recordType: string
+  url: string
   handleToWrite: () => Promise<void>
   handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   WritingModalClose: () => void
   AddModalOnOpen: () => void
   AddModalOnClose: () => void
   handleAddRecord: () => void
+  handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 export const WritePre: FC<WritePreProps> = ({
   writeData,
@@ -29,12 +33,16 @@ export const WritePre: FC<WritePreProps> = ({
   isWritingModal,
   isAddModalOpen,
   isError,
+  recordType,
+  url,
   handleTextChange,
+  handleUrlChange,
   handleToWrite,
   WritingModalClose,
   AddModalOnClose,
   AddModalOnOpen,
-  handleAddRecord
+  handleAddRecord,
+  handleSelectChange
 }) => {
   return (
     <Layout>
@@ -55,8 +63,23 @@ export const WritePre: FC<WritePreProps> = ({
                 ))}
                 {writeData.length === 0 && <ListItem>レコードなし</ListItem>}
               </List>
-              <AddModal isAddModalOpen={isAddModalOpen} data={data} handleTextChange={handleTextChange} AddModalOnClose={AddModalOnClose} handleAddRecord={handleAddRecord} />
-              <WritingModal isWriting={isWriting} isWritingModal={isWritingModal} isError={isError} WritingModalClose={WritingModalClose} />
+              <AddModal
+                url={url}
+                recordType={recordType}
+                isAddModalOpen={isAddModalOpen}
+                data={data}
+                handleSelectChange={handleSelectChange}
+                handleUrlChange={handleUrlChange}
+                handleTextChange={handleTextChange}
+                AddModalOnClose={AddModalOnClose}
+                handleAddRecord={handleAddRecord}
+              />
+              <WritingModal
+                isWriting={isWriting}
+                isWritingModal={isWritingModal}
+                isError={isError}
+                WritingModalClose={WritingModalClose}
+              />
             </Box>
             :
             <NotSupportedMessage />
