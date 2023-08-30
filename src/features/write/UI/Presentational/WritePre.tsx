@@ -63,8 +63,23 @@ export const WritePre: FC<WritePreProps> = ({
                 ))}
                 {writeData.length === 0 && <ListItem>レコードなし</ListItem>}
               </List>
-              <AddModal url={url} handleUrlChange={handleUrlChange} recordType={recordType} handleSelectChange={handleSelectChange} isAddModalOpen={isAddModalOpen} data={data} handleTextChange={handleTextChange} AddModalOnClose={AddModalOnClose} handleAddRecord={handleAddRecord} />
-              <WritingModal isWriting={isWriting} isWritingModal={isWritingModal} isError={isError} WritingModalClose={WritingModalClose} />
+              <AddModal
+                url={url}
+                recordType={recordType}
+                isAddModalOpen={isAddModalOpen}
+                data={data}
+                handleSelectChange={handleSelectChange}
+                handleUrlChange={handleUrlChange}
+                handleTextChange={handleTextChange}
+                AddModalOnClose={AddModalOnClose}
+                handleAddRecord={handleAddRecord}
+              />
+              <WritingModal
+                isWriting={isWriting}
+                isWritingModal={isWritingModal}
+                isError={isError}
+                WritingModalClose={WritingModalClose}
+              />
             </Box>
             :
             <NotSupportedMessage />
