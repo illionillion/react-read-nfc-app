@@ -50,7 +50,7 @@ export const WritePre: FC<WritePreProps> = ({
         {
           isSupported ?
             <Box>
-              <Flex>
+              <Flex justifyContent='center' paddingY={6} gap={5}>
                 <Button onClick={AddModalOnOpen}>レコード追加</Button>
                 <Button onClick={handleToWrite}>書き込む</Button>
               </Flex>
