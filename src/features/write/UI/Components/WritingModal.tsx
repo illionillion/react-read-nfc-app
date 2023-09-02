@@ -15,8 +15,8 @@ export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal,
       <ModalContent h='2xs'>
         <ModalBody h='full' display='flex' justifyContent='center' alignItems='center'>
           {isWriting ? <Box display='flex' flexDir='column' justifyContent='center' alignItems='center' gap={3}>
-            <Text>書き込み中</Text>
-            <Spinner size='lg' />
+            {/* <Text>書き込み中</Text> */}
+            <Spinner size='lg' content='書き込み中' />
           </Box> : <Text>書き込み完了</Text>
           }
           {isError && <Text colorScheme='red'>書き込み失敗</Text>}
