@@ -1,5 +1,8 @@
-import { Box, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Spinner, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Spinner, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
+import { LuSmartphoneNfc } from 'react-icons/lu';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 
 interface WritingModalProps {
   isWriting: boolean
@@ -15,9 +18,19 @@ export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal,
       <ModalContent h='2xs'>
         <ModalBody h='full' display='flex' justifyContent='center' alignItems='center'>
           {isWriting ? <Box display='flex' flexDir='column' justifyContent='center' alignItems='center' gap={3}>
-            <Text>書き込み中</Text>
+            <Flex justifyContent='center' alignItems='center' gap={3}>
+              <Text>書き込み中</Text>
+              <IconContext.Provider value={{ size: '2rem' }}>
+                <LuSmartphoneNfc />
+              </IconContext.Provider>
+            </Flex>
             <Spinner size='lg' />
-          </Box> : <Text>書き込み完了</Text>
+          </Box> : <Flex justifyContent='center' alignItems='center' gap={3}>
+            <Text>書き込み完了</Text>
+            <IconContext.Provider value={{ size: '2rem' }}>
+              <AiOutlineCheckCircle />
+            </IconContext.Provider>
+          </Flex>
           }
           {isError && <Text colorScheme='red'>書き込み失敗</Text>}
         </ModalBody>

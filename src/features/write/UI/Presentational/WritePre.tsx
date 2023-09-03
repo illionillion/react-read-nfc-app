@@ -5,6 +5,8 @@ import { NotSupportedMessage } from '../../../../application/UI/Components/isSup
 import { ContainerStyle } from './WritePre.css';
 import { WritingModal } from '../Components/WritingModal';
 import { AddModal } from '../Components/AddModal';
+import { GrAddCircle } from 'react-icons/gr';
+import { FiEdit } from 'react-icons/fi';
 
 interface WritePreProps {
   isSupported: boolean
@@ -51,8 +53,8 @@ export const WritePre: FC<WritePreProps> = ({
           isSupported ?
             <Box>
               <Flex justifyContent='center' paddingY={6} gap={5}>
-                <Button onClick={AddModalOnOpen}>レコード追加</Button>
-                <Button onClick={handleToWrite}>書き込む</Button>
+                <Button leftIcon={<GrAddCircle />} onClick={AddModalOnOpen}>レコード追加</Button>
+                <Button leftIcon={<FiEdit />} onClick={handleToWrite}>書き込む</Button>
               </Flex>
               <Text>レコード一覧</Text>
               <List>
