@@ -24,7 +24,7 @@ export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal,
                 <LuSmartphoneNfc />
               </IconContext.Provider>
             </Flex>
-            <Spinner size='lg'/>
+            <Spinner size='lg' />
           </Box> : <Flex justifyContent='center' alignItems='center' gap={3}>
             <Text>書き込み完了</Text>
             <IconContext.Provider value={{ size: '2rem' }}>
