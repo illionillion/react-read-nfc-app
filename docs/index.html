@@ -12,5 +12,11 @@
   <body>
     <div id="root"></div>
     
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+          .then((reg) => { console.log('SW registered.', reg); });
+      }
+    </script>
   </body>
 </html>
