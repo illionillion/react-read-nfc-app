@@ -27,6 +27,8 @@ module.exports = {
     // // タブ文字は使用しない
     // 'no-tabs': 'error',
 
+    // {'string'}のような波括弧を消す
+    'react/jsx-curly-brace-presence': 'error',
     /**
      * @description importが型のみの場合は、import typeを強制
      */
