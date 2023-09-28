@@ -1,4 +1,4 @@
-import { Box, Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, HStack, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text, Textarea } from '@chakra-ui/react';
 import type { ChangeEvent, FC } from 'react';
 
 interface AddModalProps {
@@ -63,8 +63,10 @@ export const AddModal: FC<AddModalProps> = ({
       }
     </ModalBody>
     <ModalFooter>
-      <Button colorScheme='red' onClick={AddModalOnClose}>閉じる</Button>
-      <Button colorScheme="green" onClick={handleAddRecord}>追加</Button>
+      <HStack spacing={2}>
+        <Button colorScheme='red' onClick={AddModalOnClose}>閉じる</Button>
+        <Button colorScheme="green" onClick={handleAddRecord}>追加</Button>
+      </HStack>
     </ModalFooter>
   </ModalContent>
 </Modal>;
