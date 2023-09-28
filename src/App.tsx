@@ -4,6 +4,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom';
 import { WriteCon } from './features/write/UI/Container/WriteCon';
 import { NotFoundCon } from './features/NotFound/UI/Container/NotFoundCon';
@@ -13,7 +14,7 @@ const App: FC = () => {
     <>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route path="/" element={<HomeCon />} />
+          <Route path="/" element={<Navigate to='/read' />} />
           <Route path="/read" element={<HomeCon />} />
           <Route path="/write" element={<WriteCon />} />
 
