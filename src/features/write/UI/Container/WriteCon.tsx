@@ -8,6 +8,7 @@ export const WriteCon: FC = () => {
   const [isSupported,] = useState<boolean>(isNFCSupported());
   const [data, setData] = useState<string>('');
   const [url, setUrl] = useState<string>('');
+  const [json, setJson] = useState<string>('')
   const [writeData, setWriteData] = useState<NDEFRecordInit[]>([]);
   const [isWriting, setIsWriting] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -23,15 +24,39 @@ export const WriteCon: FC = () => {
     setUrl(e.currentTarget.value);
   };
 
+  const handleJsonChange = (e : ChangeEvent<HTMLTextAreaElement>) => {
+    setJson(e.target.value)
+  }
+
+  const jsonCheck = ():boolean => {
+    try {
+      JSON.parse(json)
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+
   const handleAddRecord = () => {
     if (recordType === 'text' && data === '') return;
     if (recordType === 'url' && url === '') return;
+    if (recordType === 'json' && json === '' && jsonCheck()) return;
     setWriteData(prev => [...prev, (() => {
-      if (recordType === 'text') {
-        return { recordType: 'text', data: data };
-      } else {
-        return { recordType: 'url', data:  url };
+      switch (recordType) {
+        case 'text':
+          
+          return { recordType: 'text', data: data };
+        case 'url':
+          
+          return { recordType: 'url', data:  url };
+        default:
+          return { recordType: 'application/json', data:  json };
       }
+      // if (recordType === 'text') {
+      //   return { recordType: 'text', data: data };
+      // } else {
+      //   return { recordType: 'url', data:  url };
+      // }
     })()]);
     setData('');
     setUrl('');

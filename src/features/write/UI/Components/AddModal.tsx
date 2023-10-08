@@ -51,6 +51,13 @@ export const AddModal: FC<AddModalProps> = ({
                   <Input id='InputText' value={url} type='url' onChange={handleUrlChange} />
                 </Box>
               );
+            case 'json':
+              return (
+                <Box w='full'>
+                  <Text as='label' htmlFor='InputText'>JSONを入力</Text>
+                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
+                </Box>
+              );
             default:
               return (
                 <Box w='full'>
