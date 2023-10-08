@@ -18,6 +18,7 @@ interface WritePreProps {
   writeData: NDEFRecordInit[]
   recordType: string
   url: string
+  json: string
   handleToWrite: () => Promise<void>
   handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   WritingModalClose: () => void
@@ -26,6 +27,7 @@ interface WritePreProps {
   handleAddRecord: () => void
   handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
   handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
+  handleJsonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 export const WritePre: FC<WritePreProps> = ({
   writeData,
@@ -37,6 +39,7 @@ export const WritePre: FC<WritePreProps> = ({
   isError,
   recordType,
   url,
+  json,
   handleTextChange,
   handleUrlChange,
   handleToWrite,
@@ -44,7 +47,8 @@ export const WritePre: FC<WritePreProps> = ({
   AddModalOnClose,
   AddModalOnOpen,
   handleAddRecord,
-  handleSelectChange
+  handleSelectChange,
+  handleJsonChange,
 }) => {
   return (
     <Layout>
@@ -70,11 +74,13 @@ export const WritePre: FC<WritePreProps> = ({
                 recordType={recordType}
                 isAddModalOpen={isAddModalOpen}
                 data={data}
+                json={json}
                 handleSelectChange={handleSelectChange}
                 handleUrlChange={handleUrlChange}
                 handleTextChange={handleTextChange}
                 AddModalOnClose={AddModalOnClose}
                 handleAddRecord={handleAddRecord}
+                handleJsonChange={handleJsonChange}
               />
               <WritingModal
                 isWriting={isWriting}

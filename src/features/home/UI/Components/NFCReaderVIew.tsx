@@ -29,6 +29,10 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
                   return <Text key={index}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
+                } else if(item.recordType === 'application/json') {
+                  const textDecoder = new TextDecoder(item.encoding);
+                  const text = textDecoder.decode(item.data);
+                  return <Text key={index}>JSON: {text}</Text>;
                 } else {
                   return <Text key={index}>変換不可</Text>;
                 }

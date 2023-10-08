@@ -6,11 +6,13 @@ interface AddModalProps {
     data: string
     recordType: string
     url: string
+    json: string
     AddModalOnClose(): void
     handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
     handleAddRecord: () => void
     handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
+    handleJsonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const AddModal: FC<AddModalProps> = ({
@@ -18,11 +20,13 @@ export const AddModal: FC<AddModalProps> = ({
   data,
   recordType,
   url,
+  json,
   handleUrlChange,
   handleSelectChange,
   handleTextChange,
   AddModalOnClose,
-  handleAddRecord
+  handleAddRecord,
+  handleJsonChange,
 }) => <Modal isCentered size='3xl' closeOnOverlayClick={false} isOpen={isAddModalOpen} onClose={AddModalOnClose}>
   <ModalOverlay />
   <ModalContent h='md'>
@@ -32,6 +36,7 @@ export const AddModal: FC<AddModalProps> = ({
         <Select id='SelectType' value={recordType} onChange={handleSelectChange}>
           <option value="text">テキスト</option>
           <option value="url">URL</option>
+          <option value="json">JSON</option>
         </Select>
       </Box>
       {
@@ -62,7 +67,7 @@ export const AddModal: FC<AddModalProps> = ({
               return (
                 <Box w='full'>
                   <Text as='label' htmlFor='InputText'>テキストを入力</Text>
-                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
+                  <Textarea id='InputText' value={json} onChange={handleJsonChange} />
                 </Box>
               );
           }

@@ -93,6 +93,7 @@ export const WriteCon: FC = () => {
     url={url}
     isWriting={isWriting}
     recordType={recordType}
+    json={json}
     handleAddRecord={handleAddRecord}
     handleTextChange={handleTextChange}
     handleUrlChange={handleUrlChange}
@@ -101,5 +102,6 @@ export const WriteCon: FC = () => {
     AddModalOnOpen={AddModalOnOpen}
     AddModalOnClose={AddModalOnClose}
     handleSelectChange={handleSelectChange}
+    handleJsonChange={handleJsonChange}
   />;
 };
