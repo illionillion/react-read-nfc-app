@@ -64,7 +64,16 @@ export const WritePre: FC<WritePreProps> = ({
               <List>
                 {writeData.map((item, index) => (
                   <ListItem key={index}>
-                    <Text>{item.data as string}</Text>
+                    <Text>{
+                      (()=>{
+                        if (item.mediaType === 'application/json' && item.recordType === 'mime') {
+                          const decoder = new TextDecoder();
+                          return decoder.decode(item.data as AllowSharedBufferSource);
+                        } else {
+                          return item.data as string;
+                        }
+                      })()
+                    }</Text>
                   </ListItem>
                 ))}
                 {writeData.length === 0 && <ListItem>レコードなし</ListItem>}

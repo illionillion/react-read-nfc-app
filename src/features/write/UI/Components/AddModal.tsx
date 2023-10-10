@@ -60,14 +60,14 @@ export const AddModal: FC<AddModalProps> = ({
               return (
                 <Box w='full'>
                   <Text as='label' htmlFor='InputText'>JSONを入力</Text>
-                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
+                  <Textarea id='InputText' value={json} onChange={handleJsonChange} />
                 </Box>
               );
             default:
               return (
                 <Box w='full'>
                   <Text as='label' htmlFor='InputText'>テキストを入力</Text>
-                  <Textarea id='InputText' value={json} onChange={handleJsonChange} />
+                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
                 </Box>
               );
           }
