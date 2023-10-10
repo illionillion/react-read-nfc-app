@@ -37,6 +37,7 @@ export const AddModal: FC<AddModalProps> = ({
           <option value="text">テキスト</option>
           <option value="url">URL</option>
           <option value="json">JSON</option>
+          <option value="image">画像</option>
         </Select>
       </Box>
       {
@@ -61,6 +62,13 @@ export const AddModal: FC<AddModalProps> = ({
                 <Box w='full'>
                   <Text as='label' htmlFor='InputText'>JSONを入力</Text>
                   <Textarea id='InputText' value={json} onChange={handleJsonChange} />
+                </Box>
+              );
+            case 'image':
+              return (
+                <Box w='full'>
+                  <Text as='label' htmlFor='InputText'>画像を入力</Text>
+                  <Input id='InputText' value={url} type='file' onChange={handleUrlChange} accept='image/*' />
                 </Box>
               );
             default:
