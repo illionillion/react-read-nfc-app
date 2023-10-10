@@ -68,7 +68,7 @@ export const WritePre: FC<WritePreProps> = ({
                       (()=>{
                         if (item.mediaType === 'application/json' && item.recordType === 'mime') {
                           const decoder = new TextDecoder();
-                          return decoder.decode(item.data as AllowSharedBufferSource);
+                          return decoder.decode(item.data as ArrayBuffer | ArrayBufferView);
                         } else {
                           return item.data as string;
                         }
