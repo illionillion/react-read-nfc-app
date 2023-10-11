@@ -7,8 +7,8 @@ export const headerStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  // position: sticky;
-  position: absolute;
+  position: sticky;
+  // position: absolute;
   top: 0px;
 `;
 

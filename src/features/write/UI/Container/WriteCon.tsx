@@ -11,6 +11,8 @@ export const WriteCon: FC = () => {
   const [json, setJson] = useState<string>('');
   const [writeData, setWriteData] = useState<NDEFRecordInit[]>([]);
   const [isWriting, setIsWriting] = useState<boolean>(false);
+  const [imageFile, setImageFile] = useState<File>();
+  const [imageBuffer, setImageBuffer] = useState<ArrayBuffer>();
   const [isError, setIsError] = useState<boolean>(false);
   const [isWritingModal, { on: WritingModalOpen, off: WritingModalClose }] = useBoolean();
   const [isAddModalOpen, { on: AddModalOnOpen, off: AddModalOnClose }] = useBoolean();
@@ -28,6 +30,19 @@ export const WriteCon: FC = () => {
     setJson(e.target.value);
   };
 
+  const handleInputImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.currentTarget.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      console.log(file);
+      setImageFile(file);
+      setImageBuffer(await file.arrayBuffer());
+    } else {
+      setImageFile(undefined);
+      setImageBuffer(undefined);
+    }
+  };
+
   const jsonCheck = ():boolean => {
     try {
       JSON.parse(json);
@@ -42,6 +57,7 @@ export const WriteCon: FC = () => {
     if (recordType === 'text' && data === '') return;
     if (recordType === 'url' && url === '') return;
     if (recordType === 'json' && json === '' || recordType === 'json' && !jsonCheck()) return;
+    if (recordType === 'image' && (!imageFile || !imageBuffer)) return;
     
     setWriteData(prev => [...prev, (() => {
       switch (recordType) {
@@ -49,15 +65,20 @@ export const WriteCon: FC = () => {
           return { recordType: 'text', data: data };
         case 'url':
           return { recordType: 'url', data:  url };
-        default:{
+        case 'json': {
           const encoder = new TextEncoder();
-          return { recordType: 'mime', mediaType: 'application/json', data:  encoder.encode(json) };
+          return { recordType: 'mime', mediaType: 'application/json', data: encoder.encode(json) };
+        }
+        default: {
+          return { recordType: 'mime', mediaType: imageFile?.type, data: imageBuffer };
         }
       }
     })()]);
     setData('');
     setUrl('');
     setJson('');
+    setImageFile(undefined);
+    setImageBuffer(undefined);
     AddModalOnClose();
   };
 
@@ -68,6 +89,8 @@ export const WriteCon: FC = () => {
       setIsError(false);
       WritingModalOpen();
       const writer = new NDEFReader();
+      console.log(writeData);
+      
       await writer.write({ records: writeData });
     } catch (error) {
       console.log(error);
@@ -101,5 +124,6 @@ export const WriteCon: FC = () => {
     AddModalOnClose={AddModalOnClose}
     handleSelectChange={handleSelectChange}
     handleJsonChange={handleJsonChange}
+    handleInputImageChange={handleInputImageChange}
   />;
 };

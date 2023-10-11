@@ -13,6 +13,7 @@ interface AddModalProps {
     handleAddRecord: () => void
     handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
     handleJsonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    handleInputImageChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
 }
 
 export const AddModal: FC<AddModalProps> = ({
@@ -27,6 +28,7 @@ export const AddModal: FC<AddModalProps> = ({
   AddModalOnClose,
   handleAddRecord,
   handleJsonChange,
+  handleInputImageChange,
 }) => <Modal isCentered size='3xl' closeOnOverlayClick={false} isOpen={isAddModalOpen} onClose={AddModalOnClose}>
   <ModalOverlay />
   <ModalContent h='md'>
@@ -68,7 +70,7 @@ export const AddModal: FC<AddModalProps> = ({
               return (
                 <Box w='full'>
                   <Text as='label' htmlFor='InputText'>画像を入力</Text>
-                  <Input id='InputText' value={url} type='file' onChange={handleUrlChange} accept='image/*' />
+                  <Input id='InputText' type='file' h={undefined} paddingY={1} accept='image/*' onChange={handleInputImageChange} />
                 </Box>
               );
             default:

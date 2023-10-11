@@ -1,6 +1,6 @@
 import type { ChangeEvent, FC } from 'react';
 import { Layout } from '../../../../application/UI/Components/layout';
-import { Box, Button, Container, Flex, List, ListItem, Text } from '@chakra-ui/react';
+import { Button, Container, Flex, Image, List, ListItem, Text, VStack } from '@chakra-ui/react';
 import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
 import { ContainerStyle } from './WritePre.css';
 import { WritingModal } from '../Components/WritingModal';
@@ -28,6 +28,7 @@ interface WritePreProps {
   handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
   handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
   handleJsonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  handleInputImageChange: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
 }
 export const WritePre: FC<WritePreProps> = ({
   writeData,
@@ -49,14 +50,15 @@ export const WritePre: FC<WritePreProps> = ({
   handleAddRecord,
   handleSelectChange,
   handleJsonChange,
+  handleInputImageChange,
 }) => {
   return (
     <Layout>
       <Container css={ContainerStyle}>
         {
           isSupported ?
-            <Box>
-              <Flex justifyContent='center' paddingY={6} gap={5}>
+            <VStack h="full" justifyContent="center" alignItems='center'>
+              <Flex justifyContent='center' paddingY={6} gap={5} position='fixed' bottom={0} left={0} right={0}>
                 <Button leftIcon={<GrAddCircle />} onClick={AddModalOnOpen}>レコード追加</Button>
                 <Button leftIcon={<FiEdit />} onClick={handleToWrite}>書き込む</Button>
               </Flex>
@@ -69,6 +71,10 @@ export const WritePre: FC<WritePreProps> = ({
                         if (item.mediaType === 'application/json' && item.recordType === 'mime') {
                           const decoder = new TextDecoder();
                           return decoder.decode(item.data as ArrayBuffer | ArrayBufferView);
+                        } else if(item.mediaType?.includes('image') && item.recordType === 'mime' && item.data) {
+                          const blob = new Blob([item.data as BlobPart], { type: item.mediaType });
+                          const imageURL = URL.createObjectURL(blob);
+                          return <Image src={imageURL} />;
                         } else {
                           return item.data as string;
                         }
@@ -90,6 +96,7 @@ export const WritePre: FC<WritePreProps> = ({
                 AddModalOnClose={AddModalOnClose}
                 handleAddRecord={handleAddRecord}
                 handleJsonChange={handleJsonChange}
+                handleInputImageChange={handleInputImageChange}
               />
               <WritingModal
                 isWriting={isWriting}
@@ -97,7 +104,7 @@ export const WritePre: FC<WritePreProps> = ({
                 isError={isError}
                 WritingModalClose={WritingModalClose}
               />
-            </Box>
+            </VStack>
             :
             <NotSupportedMessage />
         }
