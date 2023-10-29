@@ -64,7 +64,7 @@ export const WritePre: FC<WritePreProps> = ({
               <List>
                 {writeData.map((item, index) => (
                   <ListItem key={index}>
-                    <Text>{
+                    <Text overflowWrap='anywhere'>{
                       (()=>{
                         if (item.mediaType === 'application/json' && item.recordType === 'mime') {
                           const decoder = new TextDecoder();

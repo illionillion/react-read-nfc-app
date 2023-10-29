@@ -28,7 +28,7 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
                 } else if(item.recordType === 'url') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
-                  return <Text key={index}>URL: <Link isExternal href={text} color='teal.500'>{text}</Link></Text>;
+                  return <Text key={index}>URL: <Link isExternal overflowWrap='anywhere' href={text} color='teal.500'>{text}</Link></Text>;
                 } else if(item.mediaType === 'application/json' && item.recordType === 'mime') {
                   const textDecoder = new TextDecoder();
                   const text = textDecoder.decode(item.data);
