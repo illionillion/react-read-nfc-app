@@ -1,5 +1,6 @@
-import { Box, Button, HStack, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, HStack, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Select, Text } from '@chakra-ui/react';
 import type { ChangeEvent, FC } from 'react';
+import { JsonInput, LinkInput, TextInput } from './TextInputs';
 
 interface AddModalProps {
     isAddModalOpen: boolean
@@ -44,31 +45,19 @@ export const AddModal: FC<AddModalProps> = ({
           switch (recordType) {
             case 'text':
               return (
-                <Box w='full'>
-                  <Text as='label' htmlFor='InputText'>テキストを入力</Text>
-                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
-                </Box>
+                <TextInput data={data} onChange={handleTextChange}/>
               );
             case 'url':
               return (
-                <Box w='full'>
-                  <Text as='label' htmlFor='InputText'>リンクを入力</Text>
-                  <Input id='InputText' value={url} type='url' onChange={handleUrlChange} />
-                </Box>
+                <LinkInput  url={url} onChange={handleUrlChange}/>
               );
             case 'json':
               return (
-                <Box w='full'>
-                  <Text as='label' htmlFor='InputText'>JSONを入力</Text>
-                  <Textarea id='InputText' value={json} onChange={handleJsonChange} />
-                </Box>
+                <JsonInput json={json} onChange={handleJsonChange} />
               );
             default:
               return (
-                <Box w='full'>
-                  <Text as='label' htmlFor='InputText'>テキストを入力</Text>
-                  <Textarea id='InputText' value={data} onChange={handleTextChange} />
-                </Box>
+                <TextInput data={data} onChange={handleTextChange}/>
               );
           }
         })()
