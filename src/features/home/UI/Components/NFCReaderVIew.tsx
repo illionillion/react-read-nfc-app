@@ -1,8 +1,9 @@
-import { Box, Link, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { IconContext } from 'react-icons';
 import { LuSmartphoneNfc } from 'react-icons/lu';
 import { IsSupportedMessageStyle } from '../../../../application/UI/Components/isSupported/NotSupportedMessage.css';
+import { ViewList } from './ViewList';
 
 interface NFCReaderViewProps {
     isRead: boolean
@@ -18,25 +19,9 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
       isRead ?
         <>
           {isReadFailed ? errorMessage : 
-            <Box>
+            <Box h='full'>
               <Text>シリアルナンバー：{NFCserialNumber}</Text>
-              {records.map((item, index) => {
-                if (item.recordType === 'text') {
-                  const textDecoder = new TextDecoder(item.encoding);
-                  const text = textDecoder.decode(item.data);
-                  return <Text key={index}>{`Text: ${text}`}</Text>;
-                } else if(item.recordType === 'url') {
-                  const textDecoder = new TextDecoder();
-                  const text = textDecoder.decode(item.data);
-                  return <Text key={index}>URL: <Link isExternal overflowWrap='anywhere' href={text} color='teal.500'>{text}</Link></Text>;
-                } else if(item.mediaType === 'application/json' && item.recordType === 'mime') {
-                  const textDecoder = new TextDecoder();
-                  const text = textDecoder.decode(item.data);
-                  return <Text key={index}>JSON: {text}</Text>;
-                } else {
-                  return <Text key={index}>変換不可</Text>;
-                }
-              })}
+              {records.map((item, index) => <ViewList key={index} item={item} />)}
             </Box>
           }
         </> :
