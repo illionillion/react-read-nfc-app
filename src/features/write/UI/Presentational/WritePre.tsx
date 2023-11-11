@@ -55,7 +55,7 @@ export const WritePre: FC<WritePreProps> = ({
       <Container css={ContainerStyle}>
         {
           isSupported ?
-            <Box>
+            <Box h='full'>
               <Flex justifyContent='center' paddingY={6} gap={5}>
                 <Button leftIcon={<GrAddCircle />} onClick={AddModalOnOpen}>レコード追加</Button>
                 <Button leftIcon={<FiEdit />} onClick={handleToWrite}>書き込む</Button>

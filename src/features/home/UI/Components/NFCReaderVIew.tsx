@@ -19,7 +19,7 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
       isRead ?
         <>
           {isReadFailed ? errorMessage : 
-            <Box>
+            <Box h='full'>
               <Text>シリアルナンバー：{NFCserialNumber}</Text>
               {records.map((item, index) => <ViewList key={index} item={item} />)}
             </Box>
