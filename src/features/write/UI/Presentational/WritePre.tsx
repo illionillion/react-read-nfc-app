@@ -25,6 +25,7 @@ interface WritePreProps {
   AddModalOnOpen: () => void
   AddModalOnClose: () => void
   handleAddRecord: () => void
+  handleDeleteRecord: (index: number) => void
   handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
   handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
   handleJsonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
@@ -41,6 +42,7 @@ export const WritePre: FC<WritePreProps> = ({
   url,
   json,
   handleTextChange,
+  handleDeleteRecord,
   handleUrlChange,
   handleToWrite,
   WritingModalClose,
@@ -63,8 +65,8 @@ export const WritePre: FC<WritePreProps> = ({
               <Text>レコード一覧</Text>
               <List>
                 {writeData.map((item, index) => (
-                  <ListItem key={index}>
-                    <Text overflowWrap='anywhere'>{
+                  <ListItem key={index} display='flex'>
+                    <Text overflowWrap='anywhere' flex={2}>{
                       (()=>{
                         if (item.mediaType === 'application/json' && item.recordType === 'mime') {
                           const decoder = new TextDecoder();
@@ -74,6 +76,7 @@ export const WritePre: FC<WritePreProps> = ({
                         }
                       })()
                     }</Text>
+                    <Button colorScheme='red' variant='outline' onClick={() => handleDeleteRecord(index)}>削除</Button>
                   </ListItem>
                 ))}
                 {writeData.length === 0 && <ListItem>レコードなし</ListItem>}
