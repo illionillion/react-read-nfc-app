@@ -61,6 +61,11 @@ export const WriteCon: FC = () => {
     AddModalOnClose();
   };
 
+  const handleDeleteRecord = (index: number) => {
+    const newData = writeData.filter((_, i) => i !== index);
+    setWriteData(newData);
+  };
+
   const handleToWrite = async () => {
     if (writeData.length === 0) return;
     try {
@@ -93,6 +98,7 @@ export const WriteCon: FC = () => {
     recordType={recordType}
     json={json}
     handleAddRecord={handleAddRecord}
+    handleDeleteRecord={handleDeleteRecord}
     handleTextChange={handleTextChange}
     handleUrlChange={handleUrlChange}
     handleToWrite={handleToWrite}

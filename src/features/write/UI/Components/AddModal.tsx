@@ -44,21 +44,13 @@ export const AddModal: FC<AddModalProps> = ({
         (() => {
           switch (recordType) {
             case 'text':
-              return (
-                <TextInput data={data} onChange={handleTextChange}/>
-              );
+              return <TextInput data={data} onChange={handleTextChange}/>;
             case 'url':
-              return (
-                <LinkInput  url={url} onChange={handleUrlChange}/>
-              );
+              return <LinkInput  url={url} onChange={handleUrlChange}/>;
             case 'json':
-              return (
-                <JsonInput json={json} onChange={handleJsonChange} />
-              );
+              return <JsonInput json={json} onChange={handleJsonChange} />;
             default:
-              return (
-                <TextInput data={data} onChange={handleTextChange}/>
-              );
+              return <TextInput data={data} onChange={handleTextChange}/>;
           }
         })()
       }
