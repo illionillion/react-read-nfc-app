@@ -34,7 +34,7 @@ export const EditModal: FC<EditModalProps> = ({
     <ModalBody h='full' display='flex' gap={5} flexDir='column' justifyContent='center' alignItems='center'>
       <Box w='full'>
         <Text as='label' htmlFor='SelectType'>形式を選択</Text>
-        <Select id='SelectType' value={recordType} defaultValue={recordType} onChange={handleSelectChange}>
+        <Select id='SelectType' value={recordType} onChange={handleSelectChange}>
           <option value="text">テキスト</option>
           <option value="url">URL</option>
           <option value="json">JSON</option>
