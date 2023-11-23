@@ -93,36 +93,36 @@ export const WritePre: FC<WritePreProps> = ({
                 {writeData.length === 0 && <ListItem>レコードなし</ListItem>}
               </List>
               <AddModal
+                isOpen={isAddModalOpen}
                 url={url}
                 recordType={recordType}
-                isAddModalOpen={isAddModalOpen}
                 data={data}
                 json={json}
                 handleSelectChange={handleSelectChange}
                 handleUrlChange={handleUrlChange}
                 handleTextChange={handleTextChange}
                 handleJsonChange={handleJsonChange}
-                AddModalOnClose={AddModalOnClose}
                 handleAddRecord={handleAddRecord}
+                onClose={AddModalOnClose}
               />
               <EditModal
                 url={url}
                 recordType={recordType}
-                isEditModalOpen={isEditModalOpen}
+                isOpen={isEditModalOpen}
                 data={data}
                 json={json}
                 handleSelectChange={handleSelectChange}
                 handleUrlChange={handleUrlChange}
                 handleTextChange={handleTextChange}
                 handleJsonChange={handleJsonChange}
-                EditModalOnClose={handleEditClose}
                 handleEditRecord={() => handleEditRecord(editIndex)}
+                onClose={handleEditClose}
               />
               <WritingModal
                 isWriting={isWriting}
                 isWritingModal={isWritingModal}
                 isError={isError}
-                WritingModalClose={WritingModalClose}
+                onClose={WritingModalClose}
               />
             </Box>
             :
