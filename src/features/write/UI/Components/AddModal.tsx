@@ -3,12 +3,12 @@ import type { ChangeEvent, FC } from 'react';
 import { JsonInput, LinkInput, TextInput } from './TextInputs';
 
 interface AddModalProps {
-    isAddModalOpen: boolean
+    isOpen: boolean
     data: string
     recordType: string
     url: string
     json: string
-    AddModalOnClose(): void
+    onClose(): void
     handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
     handleAddRecord: () => void
@@ -17,7 +17,7 @@ interface AddModalProps {
 }
 
 export const AddModal: FC<AddModalProps> = ({
-  isAddModalOpen,
+  isOpen,
   data,
   recordType,
   url,
@@ -25,10 +25,10 @@ export const AddModal: FC<AddModalProps> = ({
   handleUrlChange,
   handleSelectChange,
   handleTextChange,
-  AddModalOnClose,
+  onClose,
   handleAddRecord,
   handleJsonChange,
-}) => <Modal isCentered size='3xl' closeOnOverlayClick={false} isOpen={isAddModalOpen} onClose={AddModalOnClose}>
+}) => <Modal isCentered size='3xl' closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
   <ModalOverlay />
   <ModalContent h='md'>
     <ModalBody h='full' display='flex' gap={5} flexDir='column' justifyContent='center' alignItems='center'>
@@ -57,7 +57,7 @@ export const AddModal: FC<AddModalProps> = ({
     </ModalBody>
     <ModalFooter>
       <HStack spacing={2}>
-        <Button colorScheme='red' onClick={AddModalOnClose}>閉じる</Button>
+        <Button colorScheme='red' onClick={onClose}>閉じる</Button>
         <Button colorScheme="green" onClick={handleAddRecord}>追加</Button>
       </HStack>
     </ModalFooter>

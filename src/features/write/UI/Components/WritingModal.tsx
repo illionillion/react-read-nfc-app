@@ -8,12 +8,12 @@ interface WritingModalProps {
   isWriting: boolean
   isWritingModal: boolean
   isError: boolean
-  WritingModalClose: () => void
+  onClose: () => void
 }
 
-export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal, isError, WritingModalClose }) => {
+export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal, isError, onClose }) => {
   return (
-    <Modal isCentered size='2xl' closeOnOverlayClick={false} isOpen={isWritingModal} onClose={WritingModalClose}>
+    <Modal isCentered size='2xl' closeOnOverlayClick={false} isOpen={isWritingModal} onClose={onClose}>
       <ModalOverlay />
       <ModalContent h='2xs'>
         <ModalBody h='full' display='flex' justifyContent='center' alignItems='center'>
@@ -36,7 +36,7 @@ export const WritingModal: FC<WritingModalProps> = ({ isWriting, isWritingModal,
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme='blue' isDisabled={isWriting} onClick={WritingModalClose}>
+          <Button colorScheme='blue' isDisabled={isWriting} onClick={onClose}>
             閉じる
           </Button>
         </ModalFooter>
