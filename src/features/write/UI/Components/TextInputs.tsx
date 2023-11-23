@@ -5,6 +5,7 @@ interface TextInputProps {
     data: string
     onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
+
 export const TextInput: FC<TextInputProps> = ({ data, onChange }) => {
   return <Box w='full'>
     <Text as='label' htmlFor='InputText'>テキストを入力</Text>

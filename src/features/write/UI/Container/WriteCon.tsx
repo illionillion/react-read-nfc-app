@@ -14,8 +14,9 @@ export const WriteCon: FC = () => {
   const [isError, setIsError] = useState<boolean>(false);
   const [isWritingModal, { on: WritingModalOpen, off: WritingModalClose }] = useBoolean();
   const [isAddModalOpen, { on: AddModalOnOpen, off: AddModalOnClose }] = useBoolean();
+  const [isEditModalOpen, { on: EditModalOnOpen, off: EditModalOnClose }] = useBoolean();
   const [recordType, setRecordType] = useState<string>('text');
-
+  const [editIndex, setEditIndex] = useState<number>(-1);
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setData(e.currentTarget.value);
   };
@@ -24,11 +25,11 @@ export const WriteCon: FC = () => {
     setUrl(e.currentTarget.value);
   };
 
-  const handleJsonChange = (e : ChangeEvent<HTMLTextAreaElement>) => {
+  const handleJsonChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setJson(e.target.value);
   };
 
-  const jsonCheck = ():boolean => {
+  const jsonCheck = (): boolean => {
     try {
       JSON.parse(json);
       return true;
@@ -42,16 +43,16 @@ export const WriteCon: FC = () => {
     if (recordType === 'text' && data === '') return;
     if (recordType === 'url' && url === '') return;
     if (recordType === 'json' && json === '' || recordType === 'json' && !jsonCheck()) return;
-    
+
     setWriteData(prev => [...prev, (() => {
       switch (recordType) {
         case 'text':
           return { recordType: 'text', data: data };
         case 'url':
-          return { recordType: 'url', data:  url };
-        default:{
+          return { recordType: 'url', data: url };
+        default: {
           const encoder = new TextEncoder();
-          return { recordType: 'mime', mediaType: 'application/json', data:  encoder.encode(json) };
+          return { recordType: 'mime', mediaType: 'application/json', data: encoder.encode(json) };
         }
       }
     })()]);
@@ -59,6 +60,59 @@ export const WriteCon: FC = () => {
     setUrl('');
     setJson('');
     AddModalOnClose();
+  };
+
+  const handleEditOpen = (index: number) => {
+    const editData = writeData.filter((_, i) => i === index);
+    if (editData.length === 0) return;
+    setEditIndex(index);
+    const item = editData[0];
+    setRecordType(
+      item.mediaType === 'application/json' && item.recordType === 'mime' ? 'json' : item.recordType
+    );
+    switch (item.recordType) {
+      case 'text':
+        setData((item.data ?? '') as string);
+        break;
+      case 'url':
+        setUrl((item.data ?? '') as string);
+        break;
+      default: {
+        const textDecoder = new TextDecoder();
+        const text = textDecoder.decode((item.data ?? '') as DataView);
+        setJson((text) as string);
+        break;
+      }
+    }
+    EditModalOnOpen();
+  };
+
+  const handleEditRecord = (index: number) => {
+    if (recordType === 'text' && data === '') return;
+    if (recordType === 'url' && url === '') return;
+    if (recordType === 'json' && json === '' || recordType === 'json' && !jsonCheck()) return;
+
+    setWriteData(prev => prev.map((item, i) => i === index ? (() => {
+      switch (recordType) {
+        case 'text':
+          return { recordType: 'text', data: data };
+        case 'url':
+          return { recordType: 'url', data: url };
+        default: {
+          const encoder = new TextEncoder();
+          return { recordType: 'mime', mediaType: 'application/json', data: encoder.encode(json) };
+        }
+      }
+    })() : item));
+    handleEditClose();
+  };
+
+  const handleEditClose = () => {
+    setData('');
+    setUrl('');
+    setJson('');
+    setEditIndex(-1);
+    EditModalOnClose();
   };
 
   const handleDeleteRecord = (index: number) => {
@@ -92,11 +146,13 @@ export const WriteCon: FC = () => {
     isSupported={isSupported}
     isWritingModal={isWritingModal}
     isAddModalOpen={isAddModalOpen}
+    isEditModalOpen={isEditModalOpen}
     data={data}
     url={url}
     isWriting={isWriting}
     recordType={recordType}
     json={json}
+    editIndex={editIndex}
     handleAddRecord={handleAddRecord}
     handleDeleteRecord={handleDeleteRecord}
     handleTextChange={handleTextChange}
@@ -107,5 +163,8 @@ export const WriteCon: FC = () => {
     AddModalOnClose={AddModalOnClose}
     handleSelectChange={handleSelectChange}
     handleJsonChange={handleJsonChange}
+    handleEditOpen={handleEditOpen}
+    handleEditClose={handleEditClose}
+    handleEditRecord={handleEditRecord}
   />;
 };
