@@ -14,12 +14,12 @@ const App: FC = () => {
     <>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
-          <Route path="/" element={<Navigate to='/read' />} />
-          <Route path="/read" element={<HomeCon />} />
-          <Route path="/write" element={<WriteCon />} />
+          <Route path='/' element={<Navigate to='/read' />} />
+          <Route path='/read' element={<HomeCon />} />
+          <Route path='/write' element={<WriteCon />} />
 
           <Route
-            path="*"
+            path='*'
             element={<NotFoundCon />}
           />
         </Routes>

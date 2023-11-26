@@ -8,7 +8,7 @@ interface EditModalProps {
     recordType: string
     url: string
     json: string
-    onClose(): void
+    onClose:() => void
     handleTextChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     handleUrlChange: (e: ChangeEvent<HTMLInputElement>) => void
     handleEditRecord: () => void
