@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { HeaderItemPre } from '../Presentational/HeaderItemPre';
 import { useLocation } from 'react-router-dom';
+import { HeaderItemPre } from '../Presentational/HeaderItemPre';
 
 export const HeaderItemCon: FC = () => {
   const pathname = useLocation().pathname;

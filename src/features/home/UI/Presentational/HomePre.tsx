@@ -1,10 +1,10 @@
-import type { FC, MouseEventHandler } from 'react';
-import { Layout } from '../../../../application/UI/Components/layout';
 import { Button, Container } from '@chakra-ui/react';
-import { ContainerStyle } from './HomePre.css';
-import { NFCReaderView } from '../Components/NFCReaderVIew';
+import type { FC, MouseEventHandler } from 'react';
 import { MdNfc } from 'react-icons/md';
 import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
+import { Layout } from '../../../../application/UI/Components/layout';
+import { NFCReaderView } from '../Components/NFCReaderVIew';
+import { ContainerStyle } from './HomePre.css';
 
 interface HomePreProps {
   isSupported: boolean

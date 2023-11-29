@@ -1,6 +1,6 @@
+import { Button, Flex, Heading, } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { headerIconText, headerStyle } from './HeaderItemPre.css';
-import { Button, Flex, Heading, } from '@chakra-ui/react';
 
 interface HeaderItemPreProps {
     pathname: string

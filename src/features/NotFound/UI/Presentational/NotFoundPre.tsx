@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import { Layout } from '../../../../application/UI/Components/layout';
 import { Container, Text } from '@chakra-ui/react';
+import type { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Layout } from '../../../../application/UI/Components/layout';
 import { NotFoundContainer } from './NotFound.css';
 
 export const NotFoundPre: FC = () => {

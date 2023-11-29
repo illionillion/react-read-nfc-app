@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
-import { HomePre } from '../Presentational/HomePre';
 import { isNFCSupported } from '../../../../application/lib/IsNFCSupported';
+import { HomePre } from '../Presentational/HomePre';
 
 export const HomeCon: FC = () => {
 

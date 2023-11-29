@@ -1,13 +1,13 @@
-import type { ChangeEvent, FC } from 'react';
-import { Layout } from '../../../../application/UI/Components/layout';
 import { Box, Button, Container, Flex, List, ListItem, Text } from '@chakra-ui/react';
-import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
-import { ContainerStyle } from './WritePre.css';
-import { WritingModal } from '../Components/WritingModal';
-import { AddModal } from '../Components/AddModal';
-import { GrAddCircle } from 'react-icons/gr';
+import type { ChangeEvent, FC } from 'react';
 import { FiEdit } from 'react-icons/fi';
+import { GrAddCircle } from 'react-icons/gr';
+import { NotSupportedMessage } from '../../../../application/UI/Components/isSupported/NotSupportedMessage';
+import { Layout } from '../../../../application/UI/Components/layout';
+import { AddModal } from '../Components/AddModal';
 import { EditModal } from '../Components/EditModal';
+import { WritingModal } from '../Components/WritingModal';
+import { ContainerStyle } from './WritePre.css';
 
 interface WritePreProps {
   isSupported: boolean
