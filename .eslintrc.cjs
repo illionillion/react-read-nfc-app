@@ -8,7 +8,7 @@ module.exports = {
   ],
   ignorePatterns: ["dist", "docs"],
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "react", "unused-imports", "react-refresh"],
+  plugins: ["@typescript-eslint", "react", "unused-imports", "react-refresh", "import"],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
@@ -23,6 +23,15 @@ module.exports = {
     "no-mixed-spaces-and-tabs": "off",
     // // インデントはスペースで統一
     indent: ["error", 2, { SwitchCase: 1 }],
+
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
 
     // // タブ文字は使用しない
     // 'no-tabs': 'error',

@@ -1,8 +1,8 @@
+import { useBoolean } from '@chakra-ui/react';
 import type { ChangeEvent, FC } from 'react';
 import { useState } from 'react';
-import { WritePre } from '../Presentational/WritePre';
 import { isNFCSupported } from '../../../../application/lib/IsNFCSupported';
-import { useBoolean } from '@chakra-ui/react';
+import { WritePre } from '../Presentational/WritePre';
 
 export const WriteCon: FC = () => {
   const [isSupported,] = useState<boolean>(isNFCSupported());

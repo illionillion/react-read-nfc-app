@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import { HomeCon } from './features/home/UI/Container/HomeCon';
 import {
   BrowserRouter,
   Routes,
   Route,
   Navigate,
 } from 'react-router-dom';
-import { WriteCon } from './features/write/UI/Container/WriteCon';
 import { NotFoundCon } from './features/NotFound/UI/Container/NotFoundCon';
+import { HomeCon } from './features/home/UI/Container/HomeCon';
+import { WriteCon } from './features/write/UI/Container/WriteCon';
 
 const App: FC = () => {
   return (

@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Spinner, Text } from '@chakra-ui/react';
 import type { FC } from 'react';
-import { LuSmartphoneNfc } from 'react-icons/lu';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { LuSmartphoneNfc } from 'react-icons/lu';
 
 interface WritingModalProps {
   isWriting: boolean
