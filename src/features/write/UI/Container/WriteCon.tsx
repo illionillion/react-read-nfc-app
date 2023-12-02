@@ -80,7 +80,7 @@ export const WriteCon: FC = () => {
       default: {
         const textDecoder = new TextDecoder();
         const text = textDecoder.decode((item.data ?? '') as DataView);
-        setJson((text) as string);
+        setJson(text);
         break;
       }
     }
