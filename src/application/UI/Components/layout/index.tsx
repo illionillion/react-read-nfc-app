@@ -1,6 +1,6 @@
+import { Center, VStack } from '@chakra-ui/react';
 import type { FC, ReactNode } from 'react';
 import { HeaderItemCon } from './HeaderItem/Container/HeaderItemCon';
-import { Center, VStack } from '@chakra-ui/react';
 
 type Props = {
     children: ReactNode
