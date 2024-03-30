@@ -1,4 +1,4 @@
-import { Container, Text } from '@chakra-ui/react';
+import { Container, Text, Link as ChakraLink } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../../../../application/UI/Components/layout';
@@ -9,7 +9,7 @@ export const NotFoundPre: FC = () => {
     <Layout>
       <Container css={NotFoundContainer}>
         <Text>ページが見つかりません。</Text>
-        <Link to='/' style={{color: 'skyblue', textDecoration: 'underline'}}>トップへ戻る</Link>
+        <ChakraLink as={Link} to='/' color="skyblue" textDecoration="underline">トップへ戻る</ChakraLink>
       </Container>
     </Layout>
   );
