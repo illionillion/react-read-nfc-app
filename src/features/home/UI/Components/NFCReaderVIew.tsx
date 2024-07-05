@@ -1,9 +1,9 @@
 import { Box, Text } from '@chakra-ui/react';
+import { Player } from '@lottiefiles/react-lottie-player';
 import type { FC } from 'react';
+import NFCAnimation from '../../../../../public/lottie/nfc-animation.json';
 import { IsSupportedMessageStyle } from '../../../../application/UI/Components/isSupported/NotSupportedMessage.css';
 import { ViewList } from './ViewList';
-import { Player } from '@lottiefiles/react-lottie-player';
-import NFCAnimation from '../../../../../public/lottie/nfc-animation.json'
 
 interface NFCReaderViewProps {
   isRead: boolean
@@ -31,9 +31,9 @@ export const NFCReaderView: FC<NFCReaderViewProps> = ({ isRead, isReadFailed, er
             loop
             src={NFCAnimation}
             style={{
-              height: "250px",
-              width: "250px",
-              pointerEvents: "none",
+              height: '250px',
+              width: '250px',
+              pointerEvents: 'none',
             }}
           />
           <Text>NFCを近づけてください。</Text>
